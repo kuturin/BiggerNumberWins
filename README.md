@@ -1,4 +1,4 @@
-Bigger Number Wins is a game inspired by a popular mobile ad where the player cannot distinguish the larger number. In our version, we have added a roguelike element to make the gameplay more interesting and challenging. Currently, the game does not have graphics.
+Bigger Number Wins is a game inspired by a popular mobile adds where the player cannot distinguish the larger number. In our version, we have added a roguelike element to make the gameplay more interesting and challenging. Currently, the game does not have graphics.
 
 ## Gameplay
 
