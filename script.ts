@@ -7,20 +7,26 @@ const fightButton = document.getElementById("fightButton") as HTMLButtonElement;
 const playerNumberElement = document.getElementById("playerNumber") as HTMLElement;
 const enemyNumberElement = document.getElementById("enemyNumber") as HTMLElement;
 const upgradeOption = document.getElementById("upgradeOptions") as HTMLElement;
-const upgradeButtons = document.querySelectorAll(".upgradeButton") as NodeListOf<HTMLButtonElement>;
+let upgradeButtons = document.querySelectorAll(".upgradeButton") as NodeListOf<HTMLButtonElement>;
+
+function randomNumberGenerator() {
+    return Math.floor(Math.random() * 10) + 1;
+}
 
 function upgrade(number: number) {
-    let randomNumber = Math.floor(Math.random() * 10) + 1;
+    let randomNumber: number = randomNumberGenerator();
     console.log(`Upgrade button ${number} clicked with random number: ${randomNumber}`);
 
-    // Pobierz przycisk z NodeList
     const button = upgradeButtons[number];
 
-    // Stwórz nowy przycisk (klon) i zastąp stary przycisk nowym
+    // Klonowanie przycisku
     const newButton = button.cloneNode(true) as HTMLButtonElement;
     button.replaceWith(newButton);
 
-    if (randomNumber*2 < 9) {
+    // Aktualizacja listy przycisków
+    upgradeButtons = document.querySelectorAll(".upgradeButton") as NodeListOf<HTMLButtonElement>;
+
+    if ((randomNumber * 2) < 9) {
         newButton.innerHTML = `+${randomNumber}`;
         newButton.addEventListener("click", () => {
             playerNumber += randomNumber + 1;
@@ -28,7 +34,7 @@ function upgrade(number: number) {
             upgradeOption.classList.add("hidden");
             console.log(`Player number after upgrade: ${playerNumber}, randomNumber: ${randomNumber}`);
         });
-    } else if (randomNumber < 10) {
+    } else if ((randomNumber * 2) < 10) {
         newButton.innerHTML = `-${randomNumber}`;
         newButton.addEventListener("click", () => {
             playerNumber -= randomNumber;
@@ -36,7 +42,7 @@ function upgrade(number: number) {
             upgradeOption.classList.add("hidden");
             console.log(`Player number after upgrade: ${playerNumber}, randomNumber: ${randomNumber}`);
         });
-    } else if (randomNumber < 16) {
+    } else if ((randomNumber * 2) < 16) {
         newButton.innerHTML = `+${randomNumber + 2}`;
         newButton.addEventListener("click", () => {
             playerNumber += (randomNumber) + 3;
@@ -44,7 +50,7 @@ function upgrade(number: number) {
             upgradeOption.classList.add("hidden");
             console.log(`Player number after upgrade: ${playerNumber}, randomNumber: ${randomNumber}`);
         });
-    } else if (randomNumber < 17) {
+    } else if ((randomNumber * 2) < 17) {
         newButton.innerHTML = `+${randomNumber - 2}`;
         newButton.addEventListener("click", () => {
             playerNumber += (randomNumber - 1);
@@ -52,7 +58,7 @@ function upgrade(number: number) {
             upgradeOption.classList.add("hidden");
             console.log(`Player number after upgrade: ${playerNumber}, randomNumber: ${randomNumber}`);
         });
-    } else if (randomNumber < 19) {
+    } else if ((randomNumber * 2) < 19) {
         newButton.innerHTML = `*2`;
         newButton.addEventListener("click", () => {
             playerNumber = playerNumber * 2;
@@ -74,7 +80,6 @@ function upgrade(number: number) {
 function fight() {
     if (playerNumber > enemyNumber) {
         alert("You won this fight!");
-        playerNumber += enemyNumber;
         enemyNumber = playerNumber + Math.floor(Math.random() * 4);
         upgradeOption.classList.remove("hidden");
         console.log(`Upgrade options visible: ${upgradeOption.classList}`);
