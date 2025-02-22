@@ -27,7 +27,7 @@ function upgrade(number: number) {
     upgradeButtons = document.querySelectorAll(".upgradeButton") as NodeListOf<HTMLButtonElement>;
 
     if ((randomNumber * 2) < 9) {
-        newButton.innerHTML = `+${randomNumber}`;
+        newButton.innerHTML = `+${randomNumber +1}`;
         newButton.addEventListener("click", () => {
             playerNumber += randomNumber + 1;
             playerNumberElement.innerHTML = playerNumber.toString();
@@ -43,7 +43,7 @@ function upgrade(number: number) {
             console.log(`Player number after upgrade: ${playerNumber}, randomNumber: ${randomNumber}`);
         });
     } else if ((randomNumber * 2) < 16) {
-        newButton.innerHTML = `+${randomNumber + 2}`;
+        newButton.innerHTML = `+${randomNumber + 3}`;
         newButton.addEventListener("click", () => {
             playerNumber += (randomNumber) + 3;
             playerNumberElement.innerHTML = playerNumber.toString();
@@ -51,7 +51,7 @@ function upgrade(number: number) {
             console.log(`Player number after upgrade: ${playerNumber}, randomNumber: ${randomNumber}`);
         });
     } else if ((randomNumber * 2) < 17) {
-        newButton.innerHTML = `+${randomNumber - 2}`;
+        newButton.innerHTML = `+${randomNumber - 1}`;
         newButton.addEventListener("click", () => {
             playerNumber += (randomNumber - 1);
             playerNumberElement.innerHTML = playerNumber.toString();
@@ -80,7 +80,7 @@ function upgrade(number: number) {
 function fight() {
     if (playerNumber > enemyNumber) {
         alert("You won this fight!");
-        enemyNumber = playerNumber + Math.floor(Math.random() * 4);
+        enemyNumber = playerNumber + Math.floor(Math.random() * 10) - 2;
         upgradeOption.classList.remove("hidden");
         console.log(`Upgrade options visible: ${upgradeOption.classList}`);
         for (let i = 0; i < 3; i++) {
